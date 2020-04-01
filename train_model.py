@@ -92,7 +92,7 @@ def train(model: models.reinvent.Model, smiles_list: List[str], model_path: str,
                 decrease_learning_rate(optimizer, decrease_by=lr_change)
                 tqdm.write(("Epoch {:3d}   step {:3d}    loss: {:5.2f}    "
                             "patience: {}    lr: {}").format(epoch, step,
-                                                             loss.data[0],
+                                                             loss.data,
                                                              patience,
                                                              optimizer.param_groups[0]["lr"]))
                 seqs, likelihood, _ = model.sample(128, temperature=temperature)

@@ -184,7 +184,7 @@ class Model:
             entropy += -torch.sum((log_prob * prob), 1)
 
             EOS_sampled = (x[:, step] == self.voc.vocab['$']).unsqueeze(1)
-            unfinished = torch.eq(unfinished - EOS_sampled, 1)
+            unfinished = torch.eq(unfinished.int() - EOS_sampled.int(), 1)
             if torch.sum(unfinished) == 0:
                 break
 
@@ -227,7 +227,7 @@ class Model:
 
             x = Variable(x.data)
             EOS_sampled = (x == self.voc.vocab['$'])
-            unfinished = torch.eq(unfinished - EOS_sampled, 1)
+            unfinished = torch.eq(unfinished.int() - EOS_sampled.int(), 1)
             if torch.sum(unfinished) == 0:
                 break
 
